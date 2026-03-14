@@ -1,13 +1,168 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Placeholder photo 1">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Animated bouquet of yellow and purple flowers">
   <defs>
-    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ffd9cc" />
-      <stop offset="100%" stop-color="#f7f2d8" />
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff6ed" />
+      <stop offset="100%" stop-color="#f6f1dc" />
     </linearGradient>
+    <radialGradient id="haloYellow" cx="50%" cy="42%" r="48%">
+      <stop offset="0%" stop-color="#fff8b6" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#fff8b6" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="haloPurple" cx="50%" cy="42%" r="48%">
+      <stop offset="0%" stop-color="#d8c3ff" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#d8c3ff" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="stem" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#88b485" />
+      <stop offset="100%" stop-color="#5d8860" />
+    </linearGradient>
+    <linearGradient id="paperA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f4d8c8" />
+      <stop offset="100%" stop-color="#eac5b5" />
+    </linearGradient>
+    <linearGradient id="paperB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7e7da" />
+      <stop offset="100%" stop-color="#efd7c8" />
+    </linearGradient>
+    <radialGradient id="yellowPetal" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fff8b1" />
+      <stop offset="100%" stop-color="#f5cd45" />
+    </radialGradient>
+    <radialGradient id="purplePetal" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#eadcff" />
+      <stop offset="100%" stop-color="#8e69c7" />
+    </radialGradient>
+    <radialGradient id="yellowCenter" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#fff0a8" />
+      <stop offset="100%" stop-color="#c28f23" />
+    </radialGradient>
+    <radialGradient id="purpleCenter" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#f3e7ff" />
+      <stop offset="100%" stop-color="#5f3b96" />
+    </radialGradient>
+
+    <symbol id="yellowFlower" viewBox="-45 -45 90 90">
+      <g>
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#yellowPetal)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#yellowPetal)" transform="rotate(45)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#yellowPetal)" transform="rotate(90)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#yellowPetal)" transform="rotate(135)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#yellowPetal)" transform="rotate(180)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#yellowPetal)" transform="rotate(225)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#yellowPetal)" transform="rotate(270)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#yellowPetal)" transform="rotate(315)" />
+      </g>
+      <circle cx="0" cy="0" r="12" fill="url(#yellowCenter)" />
+    </symbol>
+
+    <symbol id="purpleFlower" viewBox="-45 -45 90 90">
+      <g>
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#purplePetal)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#purplePetal)" transform="rotate(45)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#purplePetal)" transform="rotate(90)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#purplePetal)" transform="rotate(135)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#purplePetal)" transform="rotate(180)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#purplePetal)" transform="rotate(225)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#purplePetal)" transform="rotate(270)" />
+        <ellipse cx="0" cy="-23" rx="10" ry="24" fill="url(#purplePetal)" transform="rotate(315)" />
+      </g>
+      <circle cx="0" cy="0" r="12" fill="url(#purpleCenter)" />
+    </symbol>
   </defs>
-  <rect width="800" height="600" fill="url(#g1)" />
-  <circle cx="170" cy="140" r="120" fill="#f7b4a4" fill-opacity="0.55" />
-  <circle cx="630" cy="460" r="140" fill="#b9d5b8" fill-opacity="0.45" />
-  <text x="50%" y="48%" text-anchor="middle" font-size="56" fill="#5a3f3c" font-family="Georgia, serif">Photo 1</text>
-  <text x="50%" y="57%" text-anchor="middle" font-size="28" fill="#5a3f3c" font-family="Verdana, sans-serif">Replace with your own image</text>
+
+  <rect width="800" height="600" fill="url(#bg)" />
+  <circle cx="260" cy="180" r="180" fill="url(#haloYellow)" />
+  <circle cx="560" cy="170" r="170" fill="url(#haloPurple)" />
+
+  <g>
+    <circle cx="210" cy="120" r="5" fill="#f4d35f" opacity="0.2">
+      <animate attributeName="opacity" values="0.1;0.5;0.1" dur="4s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="620" cy="130" r="4" fill="#9c7ad6" opacity="0.15">
+      <animate attributeName="opacity" values="0.08;0.4;0.08" dur="3.4s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="460" cy="90" r="3" fill="#f4d35f" opacity="0.15">
+      <animate attributeName="opacity" values="0.06;0.35;0.06" dur="3.8s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <g>
+    <path d="M395 492 Q338 412 262 230" fill="none" stroke="url(#stem)" stroke-width="6" stroke-linecap="round" />
+    <path d="M399 492 Q355 402 305 180" fill="none" stroke="url(#stem)" stroke-width="5" stroke-linecap="round" />
+    <path d="M401 492 Q384 378 385 150" fill="none" stroke="url(#stem)" stroke-width="6" stroke-linecap="round" />
+    <path d="M403 492 Q435 395 488 175" fill="none" stroke="url(#stem)" stroke-width="5" stroke-linecap="round" />
+    <path d="M406 492 Q456 402 542 225" fill="none" stroke="url(#stem)" stroke-width="6" stroke-linecap="round" />
+    <path d="M398 492 Q320 404 218 280" fill="none" stroke="url(#stem)" stroke-width="4" stroke-linecap="round" />
+    <path d="M408 492 Q486 408 592 276" fill="none" stroke="url(#stem)" stroke-width="4" stroke-linecap="round" />
+
+    <ellipse cx="322" cy="356" rx="30" ry="13" fill="#92ba8d" transform="rotate(-33 322 356)" />
+    <ellipse cx="472" cy="350" rx="30" ry="13" fill="#88b382" transform="rotate(35 472 350)" />
+    <ellipse cx="273" cy="298" rx="26" ry="11" fill="#8eb58a" transform="rotate(-25 273 298)" />
+    <ellipse cx="527" cy="302" rx="26" ry="11" fill="#8bb286" transform="rotate(28 527 302)" />
+  </g>
+
+  <g>
+    <g transform="translate(262 230)">
+      <animateTransform attributeName="transform" type="translate" values="262 230;262 224;262 230" dur="4.2s" repeatCount="indefinite" />
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="-4 0 0;4 0 0;-4 0 0" dur="5.4s" repeatCount="indefinite" />
+        <use href="#purpleFlower" x="-43" y="-43" width="86" height="86" />
+      </g>
+    </g>
+
+    <g transform="translate(305 180)">
+      <animateTransform attributeName="transform" type="translate" values="305 180;305 174;305 180" dur="4.6s" repeatCount="indefinite" />
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="-5 0 0;3 0 0;-5 0 0" dur="5.8s" repeatCount="indefinite" />
+        <use href="#yellowFlower" x="-46" y="-46" width="92" height="92" />
+      </g>
+    </g>
+
+    <g transform="translate(385 150)">
+      <animateTransform attributeName="transform" type="translate" values="385 150;385 142;385 150" dur="4s" repeatCount="indefinite" />
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="-3 0 0;3 0 0;-3 0 0" dur="5s" repeatCount="indefinite" />
+        <use href="#purpleFlower" x="-48" y="-48" width="96" height="96" />
+      </g>
+    </g>
+
+    <g transform="translate(488 175)">
+      <animateTransform attributeName="transform" type="translate" values="488 175;488 169;488 175" dur="4.8s" repeatCount="indefinite" />
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="-4 0 0;4 0 0;-4 0 0" dur="5.6s" repeatCount="indefinite" />
+        <use href="#yellowFlower" x="-44" y="-44" width="88" height="88" />
+      </g>
+    </g>
+
+    <g transform="translate(542 225)">
+      <animateTransform attributeName="transform" type="translate" values="542 225;542 219;542 225" dur="4.4s" repeatCount="indefinite" />
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="-3 0 0;5 0 0;-3 0 0" dur="5.2s" repeatCount="indefinite" />
+        <use href="#purpleFlower" x="-42" y="-42" width="84" height="84" />
+      </g>
+    </g>
+
+    <g transform="translate(218 280)">
+      <animateTransform attributeName="transform" type="translate" values="218 280;218 274;218 280" dur="4.9s" repeatCount="indefinite" />
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="-6 0 0;2 0 0;-6 0 0" dur="6.1s" repeatCount="indefinite" />
+        <use href="#yellowFlower" x="-39" y="-39" width="78" height="78" />
+      </g>
+    </g>
+
+    <g transform="translate(592 276)">
+      <animateTransform attributeName="transform" type="translate" values="592 276;592 271;592 276" dur="5.1s" repeatCount="indefinite" />
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="-2 0 0;6 0 0;-2 0 0" dur="6.2s" repeatCount="indefinite" />
+        <use href="#yellowFlower" x="-38" y="-38" width="76" height="76" />
+      </g>
+    </g>
+  </g>
+
+  <g>
+    <path d="M400 510 L270 450 L400 470 L530 450 Z" fill="url(#paperB)" opacity="0.92" />
+    <path d="M400 530 L236 434 L400 448 L564 434 Z" fill="url(#paperA)" opacity="0.94" />
+    <path d="M346 500 Q398 534 454 500 Q430 560 400 574 Q368 560 346 500 Z" fill="#dcae95" opacity="0.95" />
+    <circle cx="400" cy="515" r="26" fill="#f1d3bf" opacity="0.85" />
+  </g>
 </svg>
