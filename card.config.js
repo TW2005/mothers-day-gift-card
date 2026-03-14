@@ -12,6 +12,14 @@ window.cardConfig = {
     "assets/photos/photo-2.svg",
     "assets/photos/photo-3.svg"
   ],
+  access: {
+    enabled: true,
+    code: "MOM2026",
+    title: "Private Mother's Day Card",
+    description: "Enter the passcode to open this card.",
+    buttonLabel: "Open Card",
+    errorText: "That passcode is not correct. Please try again."
+  },
   palette: {
     washTop: "#ffe8dc",
     washBottom: "#f5f6df",

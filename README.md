@@ -11,6 +11,7 @@ Edit `card.config.js`:
 - `messageLines`
 - `signature`
 - `photos` (exactly 3 image paths)
+- `access` (password gate settings)
 - `palette`
 
 ## Add your real photos
@@ -20,6 +21,16 @@ Edit `card.config.js`:
 3. Keep exactly three entries in the `photos` array.
 
 If a photo path is empty or invalid, the card shows a graceful fallback tile.
+
+## Password gate
+
+Set these in `card.config.js` under `access`:
+
+- `enabled`: `true` or `false`
+- `code`: passcode required to open the card
+- `title`, `description`, `buttonLabel`, `errorText`: prompt text
+
+This is a lightweight client-side gate for privacy, not strong security.
 
 ## Preview locally
 

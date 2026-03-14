@@ -10,6 +10,14 @@
     ],
     signature: "Love always",
     photos: ["", "", ""],
+    access: {
+      enabled: false,
+      code: "",
+      title: "Private Mother's Day Card",
+      description: "Enter the passcode to open this card.",
+      buttonLabel: "Open Card",
+      errorText: "That passcode is not correct. Please try again."
+    },
     palette: {
       washTop: "#ffe8dc",
       washBottom: "#f5f6df",
@@ -22,10 +30,22 @@
 
   const config = normalizeConfig(window.cardConfig);
 
-  applyPalette(config.palette);
-  renderTextContent(config);
-  renderPhotoCollage(config.photos);
-  renderFloralLayer();
+  const showCard = () => {
+    applyPalette(config.palette);
+    renderTextContent(config);
+    renderPhotoCollage(config.photos);
+    renderFloralLayer();
+  };
+
+  if (config.access.enabled && config.access.code) {
+    lockCard();
+    renderAccessGate(config.access, () => {
+      unlockCard();
+      showCard();
+    });
+  } else {
+    showCard();
+  }
 
   function normalizeConfig(rawConfig) {
     const safeSource = rawConfig && typeof rawConfig === "object" ? rawConfig : {};
@@ -40,9 +60,22 @@
           .slice(0, REQUIRED_PHOTO_COUNT)
       : [];
 
+    const sourceAccess =
+      safeSource.access && typeof safeSource.access === "object" ? safeSource.access : {};
+
     while (photos.length < REQUIRED_PHOTO_COUNT) {
       photos.push("");
     }
+
+    const enabled =
+      typeof sourceAccess.enabled === "boolean"
+        ? sourceAccess.enabled
+        : defaultConfig.access.enabled;
+
+    const code =
+      typeof sourceAccess.code === "string" && sourceAccess.code.trim()
+        ? sourceAccess.code.trim()
+        : defaultConfig.access.code;
 
     return {
       recipientName:
@@ -59,6 +92,26 @@
           ? safeSource.signature.trim()
           : defaultConfig.signature,
       photos,
+      access: {
+        enabled,
+        code,
+        title:
+          typeof sourceAccess.title === "string" && sourceAccess.title.trim()
+            ? sourceAccess.title.trim()
+            : defaultConfig.access.title,
+        description:
+          typeof sourceAccess.description === "string" && sourceAccess.description.trim()
+            ? sourceAccess.description.trim()
+            : defaultConfig.access.description,
+        buttonLabel:
+          typeof sourceAccess.buttonLabel === "string" && sourceAccess.buttonLabel.trim()
+            ? sourceAccess.buttonLabel.trim()
+            : defaultConfig.access.buttonLabel,
+        errorText:
+          typeof sourceAccess.errorText === "string" && sourceAccess.errorText.trim()
+            ? sourceAccess.errorText.trim()
+            : defaultConfig.access.errorText
+      },
       palette: {
         ...defaultConfig.palette,
         ...(safeSource.palette && typeof safeSource.palette === "object"
@@ -66,6 +119,82 @@
           : {})
       }
     };
+  }
+
+  function lockCard() {
+    document.body.classList.add("locked");
+  }
+
+  function unlockCard() {
+    document.body.classList.remove("locked");
+  }
+
+  function renderAccessGate(accessConfig, onUnlock) {
+    const gate = document.createElement("section");
+    gate.className = "access-gate";
+    gate.setAttribute("role", "dialog");
+    gate.setAttribute("aria-modal", "true");
+    gate.setAttribute("aria-label", "Card passcode prompt");
+
+    const panel = document.createElement("div");
+    panel.className = "access-panel";
+
+    const title = document.createElement("h2");
+    title.className = "access-title";
+    title.textContent = accessConfig.title;
+
+    const description = document.createElement("p");
+    description.className = "access-description";
+    description.textContent = accessConfig.description;
+
+    const form = document.createElement("form");
+    form.className = "access-form";
+
+    const label = document.createElement("label");
+    label.className = "sr-only";
+    label.setAttribute("for", "access-code-input");
+    label.textContent = "Passcode";
+
+    const input = document.createElement("input");
+    input.id = "access-code-input";
+    input.className = "access-input";
+    input.type = "password";
+    input.placeholder = "Enter passcode";
+    input.autocomplete = "off";
+    input.required = true;
+
+    const button = document.createElement("button");
+    button.className = "access-button";
+    button.type = "submit";
+    button.textContent = accessConfig.buttonLabel;
+
+    const error = document.createElement("p");
+    error.className = "access-error";
+    error.setAttribute("aria-live", "polite");
+
+    form.append(label, input, button, error);
+    panel.append(title, description, form);
+    gate.appendChild(panel);
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const enteredCode = input.value.trim();
+
+      if (enteredCode === accessConfig.code) {
+        gate.remove();
+        onUnlock();
+        return;
+      }
+
+      error.textContent = accessConfig.errorText;
+      input.value = "";
+      input.focus();
+    });
+
+    document.body.appendChild(gate);
+    window.requestAnimationFrame(() => {
+      input.focus();
+    });
   }
 
   function applyPalette(palette) {

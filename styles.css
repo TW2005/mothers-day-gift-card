@@ -29,6 +29,16 @@ body {
   background: linear-gradient(160deg, var(--wash-top), var(--wash-bottom));
 }
 
+body.locked {
+  overflow: hidden;
+}
+
+body.locked .page {
+  pointer-events: none;
+  user-select: none;
+  filter: blur(7px) saturate(0.88);
+}
+
 .background-wash,
 .paper-texture,
 .flora-layer {
@@ -284,6 +294,84 @@ body {
   border-radius: 10px;
 }
 
+.access-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at 20% 24%, rgba(255, 188, 183, 0.27), transparent 46%),
+    radial-gradient(circle at 74% 78%, rgba(184, 215, 186, 0.27), transparent 48%),
+    rgba(248, 242, 237, 0.82);
+  backdrop-filter: blur(4px);
+}
+
+.access-panel {
+  width: min(420px, 94vw);
+  background: rgba(255, 252, 249, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(76, 54, 49, 0.2);
+  padding: clamp(1.2rem, 1rem + 1vw, 2rem);
+}
+
+.access-title {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.8rem, 1.6rem + 1vw, 2.5rem);
+  font-weight: 600;
+}
+
+.access-description {
+  margin: 0.4rem 0 0;
+  font-size: 1.03rem;
+  line-height: 1.48;
+}
+
+.access-form {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.access-input {
+  border: 1px solid rgba(134, 98, 90, 0.32);
+  border-radius: 12px;
+  padding: 0.78rem 0.86rem;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ink);
+}
+
+.access-input:focus {
+  outline: 2px solid rgba(140, 177, 141, 0.6);
+  outline-offset: 2px;
+}
+
+.access-button {
+  border: 0;
+  border-radius: 12px;
+  padding: 0.72rem 0.95rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #fdfbf8;
+  background: linear-gradient(125deg, #e09e91, #cf8c81);
+  cursor: pointer;
+}
+
+.access-button:hover {
+  filter: brightness(1.03);
+}
+
+.access-error {
+  min-height: 1.2rem;
+  margin: 0;
+  font-size: 0.92rem;
+  color: #9c4a46;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -380,6 +468,10 @@ body {
 
   .photo-frame {
     min-height: 210px;
+  }
+
+  .access-panel {
+    border-radius: 18px;
   }
 }
 
