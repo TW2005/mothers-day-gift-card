@@ -117,13 +117,13 @@
 
       if (typeof path === "string" && path.trim().length > 0) {
         const image = document.createElement("img");
-        image.src = path;
-        image.alt = `Family photo ${index + 1}`;
-        image.loading = index === 0 ? "eager" : "lazy";
-        image.decoding = "async";
         image.addEventListener("error", () => {
           frame.replaceChildren(createPhotoFallback(index, path));
         });
+        image.alt = `Family photo ${index + 1}`;
+        image.loading = index === 0 ? "eager" : "lazy";
+        image.decoding = "async";
+        image.src = path;
         frame.appendChild(image);
       } else {
         frame.appendChild(createPhotoFallback(index, ""));
