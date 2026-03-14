@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A watercolor-inspired animated Mother's Day card."
+    />
+    <title>Mother's Day Card</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="card.config.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="background-wash" aria-hidden="true"></div>
+    <div class="paper-texture" aria-hidden="true"></div>
+    <div id="flora-layer" class="flora-layer" aria-hidden="true"></div>
+
+    <main class="page" aria-label="Mother's Day card page">
+      <article class="card" aria-label="Mother's Day card">
+        <header class="card-header">
+          <p id="recipient" class="recipient"></p>
+          <h1 id="headline" class="headline"></h1>
+        </header>
+
+        <section id="message" class="message" aria-label="Card message"></section>
+
+        <section class="photo-section" aria-label="Family photo collage">
+          <h2 class="sr-only">Photo collage</h2>
+          <div id="photo-collage" class="photo-collage"></div>
+        </section>
+
+        <footer class="card-footer">
+          <p id="signature" class="signature"></p>
+        </footer>
+      </article>
+    </main>
+
+    <noscript>
+      <p class="noscript-msg">
+        This card uses JavaScript for animations and personalized content.
+      </p>
+    </noscript>
+  </body>
+</html>

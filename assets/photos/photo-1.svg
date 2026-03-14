@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Placeholder photo 1">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd9cc" />
+      <stop offset="100%" stop-color="#f7f2d8" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g1)" />
+  <circle cx="170" cy="140" r="120" fill="#f7b4a4" fill-opacity="0.55" />
+  <circle cx="630" cy="460" r="140" fill="#b9d5b8" fill-opacity="0.45" />
+  <text x="50%" y="48%" text-anchor="middle" font-size="56" fill="#5a3f3c" font-family="Georgia, serif">Photo 1</text>
+  <text x="50%" y="57%" text-anchor="middle" font-size="28" fill="#5a3f3c" font-family="Verdana, sans-serif">Replace with your own image</text>
+</svg>
