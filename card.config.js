@@ -6,7 +6,7 @@ window.cardConfig = {
   photos: [],
   access: {
     enabled: true,
-    code: "MOM2026",
+    code: "MUM2026",
     title: "Private Mother's Day Card",
     description: "Enter the passcode to open this card.",
     buttonLabel: "Open Card",
