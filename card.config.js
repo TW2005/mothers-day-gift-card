@@ -1,7 +1,7 @@
 window.cardConfig = {
   recipientName: "For Mum",
   headline: "Happy Mother's Day",
-  messageLines: ["happy mothers day from thomas hope you have a great day"],
+  messageLines: ["Happy Mother's Day, hope you have a great day"],
   signature: "Love, Thomas ♡",
   photos: [],
   access: {
