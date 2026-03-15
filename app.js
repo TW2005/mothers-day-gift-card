@@ -179,7 +179,7 @@
       event.preventDefault();
       const enteredCode = input.value.trim();
 
-      if (enteredCode === accessConfig.code) {
+      if (normalizeCode(enteredCode) === normalizeCode(accessConfig.code)) {
         gate.remove();
         onUnlock();
         return;
@@ -194,6 +194,12 @@
     window.requestAnimationFrame(() => {
       input.focus();
     });
+  }
+
+  function normalizeCode(code) {
+    return String(code || "")
+      .trim()
+      .toLowerCase();
   }
 
   function applyPalette(palette) {
