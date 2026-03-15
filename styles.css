@@ -1,13 +1,14 @@
 :root {
-  --wash-top: #ffe8dc;
-  --wash-bottom: #f5f6df;
+  --wash-top: #fce8dc;
+  --wash-bottom: #f0edd8;
   --wash-blush: #ffd8d7;
-  --ink: #3f2b2a;
-  --card-bg: rgba(255, 250, 246, 0.82);
-  --card-border: rgba(255, 255, 255, 0.6);
-  --accent-soft: #e6af9f;
-  --accent-green: #8cb18d;
-  --shadow: 0 30px 80px rgba(86, 58, 52, 0.18);
+  --ink: #3a2520;
+  --ink-light: #7a5a54;
+  --card-bg: #fffcf7;
+  --card-border: rgba(210, 175, 155, 0.28);
+  --accent-soft: #d4927e;
+  --accent-green: #7ea87f;
+  --shadow: 0 24px 64px rgba(80, 50, 40, 0.14), 0 4px 16px rgba(80, 50, 40, 0.08);
 }
 
 * {
@@ -26,7 +27,7 @@ body {
   font-family: "Nunito", "Trebuchet MS", sans-serif;
   color: var(--ink);
   overflow-x: hidden;
-  background: linear-gradient(160deg, var(--wash-top), var(--wash-bottom));
+  background: linear-gradient(155deg, var(--wash-top) 0%, #f8efe6 40%, var(--wash-bottom) 100%);
 }
 
 body.locked {
@@ -49,30 +50,30 @@ body.locked .page {
 
 .background-wash {
   background:
-    radial-gradient(circle at 12% 14%, rgba(255, 190, 187, 0.52), transparent 44%),
-    radial-gradient(circle at 84% 12%, rgba(255, 230, 199, 0.54), transparent 40%),
-    radial-gradient(circle at 72% 82%, rgba(185, 215, 186, 0.45), transparent 47%),
-    linear-gradient(160deg, var(--wash-top), var(--wash-bottom));
+    radial-gradient(ellipse at 8% 10%, rgba(255, 185, 170, 0.38), transparent 42%),
+    radial-gradient(ellipse at 90% 8%, rgba(255, 220, 185, 0.4), transparent 38%),
+    radial-gradient(ellipse at 80% 88%, rgba(175, 210, 175, 0.32), transparent 44%),
+    radial-gradient(ellipse at 14% 88%, rgba(255, 205, 195, 0.28), transparent 40%);
   z-index: -4;
 }
 
 .paper-texture {
   z-index: -3;
-  opacity: 0.55;
+  opacity: 0.35;
   background-image:
     repeating-linear-gradient(
-      22deg,
-      rgba(255, 255, 255, 0.18) 0px,
-      rgba(255, 255, 255, 0.18) 2px,
-      transparent 2px,
-      transparent 7px
+      30deg,
+      rgba(255, 255, 255, 0.14) 0px,
+      rgba(255, 255, 255, 0.14) 1px,
+      transparent 1px,
+      transparent 8px
     ),
     repeating-linear-gradient(
-      -18deg,
-      rgba(244, 232, 223, 0.18) 0px,
-      rgba(244, 232, 223, 0.18) 2px,
-      transparent 2px,
-      transparent 6px
+      -20deg,
+      rgba(240, 225, 210, 0.12) 0px,
+      rgba(240, 225, 210, 0.12) 1px,
+      transparent 1px,
+      transparent 9px
     );
 }
 
@@ -81,124 +82,153 @@ body.locked .page {
   overflow: hidden;
 }
 
+/* ── Background flowers ── */
 .flower {
   position: absolute;
-  width: var(--size, 120px);
-  height: var(--size, 120px);
+  width: var(--size, 100px);
+  height: var(--size, 100px);
   opacity: 0;
-  transform-origin: center;
+  transform-origin: center bottom;
   animation:
-    bloom 1.8s ease var(--delay, 0s) forwards,
-    floaty var(--float-duration, 12s) ease-in-out calc(var(--delay, 0s) + 1.4s)
-      infinite,
-    sway var(--sway-duration, 6s) ease-in-out calc(var(--delay, 0s) + 1.4s)
-      infinite;
+    bloom 2s ease var(--delay, 0s) forwards,
+    floaty var(--float-duration, 12s) ease-in-out calc(var(--delay, 0s) + 1.6s) infinite,
+    sway var(--sway-duration, 7s) ease-in-out calc(var(--delay, 0s) + 1.6s) infinite;
 }
 
 .flower svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 12px 18px rgba(71, 53, 52, 0.18));
+  filter: drop-shadow(0 8px 14px rgba(80, 50, 40, 0.14));
 }
 
-.flower .petal {
-  fill: var(--petal);
-  fill-opacity: 0.84;
-}
-
-.flower .flower-center {
-  fill: var(--center);
-}
-
+/* ── Page layout ── */
 .page {
   position: relative;
   z-index: 1;
-  width: min(980px, 94vw);
-  margin: 4.2rem auto;
-  padding: 1rem;
+  width: min(680px, 92vw);
+  margin: 3.5rem auto 5rem;
+  padding: 0;
 }
 
+/* ── Card ── */
 .card {
   position: relative;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 30px;
+  border-radius: 28px;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(3px);
-  padding: clamp(1.3rem, 1.1rem + 1.5vw, 2.5rem);
-  animation: card-enter 0.9s ease both;
+  overflow: hidden;
+  animation: card-enter 1s cubic-bezier(0.22, 0.9, 0.36, 1) both;
 }
 
-.card::before {
-  content: "";
+/* ── Bouquet hero ── */
+.card-bouquet {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+}
+
+.bouquet-img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+.bouquet-fade {
   position: absolute;
-  inset: 16px;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  pointer-events: none;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--card-bg));
 }
 
+/* ── Card content ── */
 .card-header {
-  margin-bottom: 1.2rem;
+  padding: 0 clamp(1.4rem, 4vw, 2.6rem);
+  text-align: center;
 }
 
 .recipient {
-  margin: 0;
-  font-size: 0.98rem;
-  letter-spacing: 0.07em;
+  margin: 0 0 0.2rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--ink), white 26%);
+  color: var(--ink-light);
+  font-weight: 500;
 }
 
 .headline {
-  margin: 0.45rem 0 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2.05rem, 1.8rem + 2vw, 3.8rem);
-  font-weight: 600;
-  line-height: 1.05;
-  color: color-mix(in srgb, var(--ink), black 6%);
+  margin: 0;
+  font-family: "Great Vibes", "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.6rem, 2rem + 3vw, 4.4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: color-mix(in srgb, var(--ink), var(--accent-soft) 30%);
   text-wrap: balance;
 }
 
+/* ── Divider ── */
+.card-divider {
+  display: flex;
+  justify-content: center;
+  padding: 0.4rem clamp(1.4rem, 4vw, 2.6rem);
+}
+
+.card-divider svg {
+  width: 160px;
+  height: auto;
+}
+
+/* ── Message ── */
 .message {
-  margin: 1rem 0 1.8rem;
+  padding: 0.2rem clamp(1.4rem, 4vw, 2.6rem) 0.4rem;
+  text-align: center;
 }
 
 .message p {
   margin: 0.5rem 0;
-  font-size: clamp(1.02rem, 0.96rem + 0.34vw, 1.28rem);
-  line-height: 1.55;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.12rem, 1rem + 0.6vw, 1.4rem);
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--ink), white 12%);
   opacity: 0;
-  transform: translateY(12px);
-  animation: content-enter 0.75s ease forwards;
+  transform: translateY(10px);
+  animation: content-enter 0.8s ease forwards;
 }
 
-.message p:nth-child(1) {
-  animation-delay: 0.24s;
+.message p:nth-child(1) { animation-delay: 0.3s; }
+.message p:nth-child(2) { animation-delay: 0.46s; }
+.message p:nth-child(3) { animation-delay: 0.62s; }
+.message p:nth-child(4) { animation-delay: 0.78s; }
+
+/* ── Footer ── */
+.card-footer {
+  padding: 0.8rem clamp(1.4rem, 4vw, 2.6rem) clamp(1.4rem, 4vw, 2.6rem);
+  text-align: center;
 }
 
-.message p:nth-child(2) {
-  animation-delay: 0.38s;
+.signature {
+  margin: 0;
+  font-family: "Great Vibes", "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.8rem, 1.4rem + 1.4vw, 2.8rem);
+  font-weight: 400;
+  color: color-mix(in srgb, var(--ink), var(--accent-soft) 36%);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: content-enter 0.78s ease 0.8s forwards;
 }
 
-.message p:nth-child(3) {
-  animation-delay: 0.52s;
-}
-
-.message p:nth-child(4) {
-  animation-delay: 0.66s;
-}
-
-.photo-section {
-  margin-top: 1.5rem;
-}
+/* ── Photo collage (kept for compat) ── */
+.photo-section { margin-top: 1.5rem; }
 
 .photo-collage {
   display: grid;
   grid-template-columns: 1.16fr 0.84fr;
-  grid-template-areas:
-    "photo-1 photo-2"
-    "photo-1 photo-3";
+  grid-template-areas: "photo-1 photo-2" "photo-1 photo-3";
   gap: 0.9rem;
   min-height: 330px;
 }
@@ -207,33 +237,18 @@ body.locked .page {
   position: relative;
   margin: 0;
   overflow: hidden;
-  border-radius: 22px;
+  border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.68);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.6),
-    rgba(252, 236, 228, 0.62)
-  );
-  box-shadow: 0 12px 25px rgba(66, 46, 43, 0.14);
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(252,236,228,0.62));
+  box-shadow: 0 8px 20px rgba(66, 46, 43, 0.1);
   opacity: 0;
   transform: translateY(18px) scale(0.99);
   animation: content-enter 0.78s ease forwards;
 }
 
-.photo-frame.slot-1 {
-  grid-area: photo-1;
-  animation-delay: 0.36s;
-}
-
-.photo-frame.slot-2 {
-  grid-area: photo-2;
-  animation-delay: 0.48s;
-}
-
-.photo-frame.slot-3 {
-  grid-area: photo-3;
-  animation-delay: 0.6s;
-}
+.photo-frame.slot-1 { grid-area: photo-1; animation-delay: 0.36s; }
+.photo-frame.slot-2 { grid-area: photo-2; animation-delay: 0.48s; }
+.photo-frame.slot-3 { grid-area: photo-3; animation-delay: 0.6s; }
 
 .photo-frame img,
 .photo-fallback {
@@ -243,9 +258,7 @@ body.locked .page {
   aspect-ratio: 4 / 3;
 }
 
-.photo-frame img {
-  object-fit: cover;
-}
+.photo-frame img { object-fit: cover; }
 
 .photo-fallback {
   display: grid;
@@ -254,39 +267,10 @@ body.locked .page {
   gap: 0.55rem;
   padding: 1rem;
   text-align: center;
-  color: color-mix(in srgb, var(--ink), white 16%);
-  background:
-    radial-gradient(circle at 28% 20%, rgba(255, 202, 196, 0.35), transparent 56%),
-    radial-gradient(circle at 80% 92%, rgba(195, 214, 189, 0.35), transparent 52%),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.84), rgba(250, 238, 230, 0.9));
+  color: var(--ink-light);
 }
 
-.photo-fallback strong {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.35rem;
-  font-weight: 600;
-}
-
-.photo-fallback span {
-  font-size: 0.92rem;
-  max-width: 19ch;
-}
-
-.card-footer {
-  margin-top: 1.5rem;
-}
-
-.signature {
-  margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.6rem, 1.2rem + 1vw, 2.3rem);
-  font-weight: 600;
-  color: color-mix(in srgb, var(--ink), var(--accent-soft) 24%);
-  opacity: 0;
-  transform: translateY(12px);
-  animation: content-enter 0.72s ease 0.72s forwards;
-}
-
+/* ── Misc ── */
 .noscript-msg {
   margin: 1rem;
   padding: 0.75rem 1rem;
@@ -294,6 +278,7 @@ body.locked .page {
   border-radius: 10px;
 }
 
+/* ── Access gate ── */
 .access-gate {
   position: fixed;
   inset: 0;
@@ -302,73 +287,80 @@ body.locked .page {
   place-items: center;
   padding: 1rem;
   background:
-    radial-gradient(circle at 20% 24%, rgba(255, 188, 183, 0.27), transparent 46%),
-    radial-gradient(circle at 74% 78%, rgba(184, 215, 186, 0.27), transparent 48%),
-    rgba(248, 242, 237, 0.82);
-  backdrop-filter: blur(4px);
+    radial-gradient(ellipse at 22% 20%, rgba(255, 185, 175, 0.22), transparent 48%),
+    radial-gradient(ellipse at 76% 82%, rgba(175, 210, 178, 0.22), transparent 50%),
+    rgba(248, 241, 235, 0.88);
+  backdrop-filter: blur(6px);
 }
 
 .access-panel {
-  width: min(420px, 94vw);
-  background: rgba(255, 252, 249, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 24px;
-  box-shadow: 0 20px 50px rgba(76, 54, 49, 0.2);
-  padding: clamp(1.2rem, 1rem + 1vw, 2rem);
+  width: min(400px, 92vw);
+  background: rgba(255, 253, 249, 0.97);
+  border: 1px solid rgba(210, 180, 160, 0.28);
+  border-radius: 22px;
+  box-shadow: 0 20px 50px rgba(76, 50, 44, 0.16);
+  padding: clamp(1.4rem, 1.2rem + 1.5vw, 2.2rem);
+  text-align: center;
+  animation: card-enter 0.6s cubic-bezier(0.22, 0.9, 0.36, 1) both;
 }
 
 .access-title {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.8rem, 1.6rem + 1vw, 2.5rem);
-  font-weight: 600;
+  font-family: "Great Vibes", "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 1.6rem + 1.4vw, 2.8rem);
+  font-weight: 400;
+  color: color-mix(in srgb, var(--ink), var(--accent-soft) 28%);
 }
 
 .access-description {
-  margin: 0.4rem 0 0;
-  font-size: 1.03rem;
-  line-height: 1.48;
+  margin: 0.5rem 0 0;
+  font-size: 0.97rem;
+  color: var(--ink-light);
+  line-height: 1.5;
 }
 
 .access-form {
-  margin-top: 1rem;
+  margin-top: 1.1rem;
   display: grid;
-  gap: 0.7rem;
+  gap: 0.65rem;
 }
 
 .access-input {
-  border: 1px solid rgba(134, 98, 90, 0.32);
+  border: 1px solid rgba(160, 110, 95, 0.28);
   border-radius: 12px;
-  padding: 0.78rem 0.86rem;
+  padding: 0.8rem 1rem;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.9);
   color: var(--ink);
+  text-align: center;
+  letter-spacing: 0.12em;
 }
 
 .access-input:focus {
-  outline: 2px solid rgba(140, 177, 141, 0.6);
+  outline: 2px solid rgba(125, 168, 128, 0.5);
   outline-offset: 2px;
 }
 
 .access-button {
   border: 0;
   border-radius: 12px;
-  padding: 0.72rem 0.95rem;
-  font-size: 0.98rem;
+  padding: 0.78rem 1rem;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.97rem;
   font-weight: 600;
   color: #fdfbf8;
-  background: linear-gradient(125deg, #e09e91, #cf8c81);
+  background: linear-gradient(130deg, #d4927e, #c47b6e);
   cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: filter 0.18s;
 }
 
-.access-button:hover {
-  filter: brightness(1.03);
-}
+.access-button:hover { filter: brightness(1.06); }
 
 .access-error {
   min-height: 1.2rem;
   margin: 0;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: #9c4a46;
 }
 
@@ -383,49 +375,40 @@ body.locked .page {
   border: 0;
 }
 
+/* ── Animations ── */
 @keyframes bloom {
   0% {
     opacity: 0;
-    transform: scale(0.55) rotate(-9deg);
+    transform: scale(0.4) rotate(-12deg);
   }
-
+  70% {
+    opacity: 0.9;
+    transform: scale(1.05) rotate(2deg);
+  }
   100% {
-    opacity: 0.92;
+    opacity: 0.88;
     transform: scale(1) rotate(0deg);
   }
 }
 
 @keyframes floaty {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-14px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 @keyframes sway {
-  0%,
-  100% {
-    rotate: -3deg;
-  }
-
-  50% {
-    rotate: 3deg;
-  }
+  0%, 100% { rotate: -4deg; }
+  50% { rotate: 4deg; }
 }
 
 @keyframes card-enter {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(22px) scale(0.985);
   }
-
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -436,58 +419,35 @@ body.locked .page {
   }
 }
 
-@media (max-width: 860px) {
+/* ── Responsive ── */
+@media (max-width: 600px) {
   .page {
-    margin: 2.8rem auto;
+    width: min(600px, 96vw);
+    margin: 2rem auto 4rem;
   }
 
-  .photo-collage {
-    min-height: 280px;
-  }
-}
-
-@media (max-width: 720px) {
-  .page {
-    width: min(720px, 95vw);
-    margin: 2rem auto;
-    padding: 0.4rem;
-  }
-
-  .card {
-    border-radius: 24px;
+  .bouquet-img {
+    max-height: 240px;
   }
 
   .photo-collage {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "photo-1"
-      "photo-2"
-      "photo-3";
+    grid-template-areas: "photo-1" "photo-2" "photo-3";
     min-height: unset;
   }
 
-  .photo-frame {
-    min-height: 210px;
-  }
-
-  .access-panel {
-    border-radius: 18px;
-  }
+  .photo-frame { min-height: 190px; }
+  .access-panel { border-radius: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 
-  .flower {
-    opacity: 0.68;
-  }
+  .flower { opacity: 0.65; }
 
   .message p,
   .photo-frame,

@@ -292,16 +292,24 @@
     const flowerLayer = document.getElementById("flora-layer");
     flowerLayer.textContent = "";
 
+    // Arranged as a soft border frame — corners + edges, not random scatter
     const flowers = [
-      { x: "6%", y: "4%", size: 96, delay: "0s", petal: "#f2ada0", center: "#f4ce81" },
-      { x: "88%", y: "7%", size: 140, delay: "0.18s", petal: "#f6b7ab", center: "#f3cf83" },
-      { x: "79%", y: "21%", size: 90, delay: "0.42s", petal: "#e3a1b8", center: "#f2cc79" },
-      { x: "11%", y: "32%", size: 124, delay: "0.56s", petal: "#f6b3a7", center: "#f1c56f" },
-      { x: "92%", y: "38%", size: 110, delay: "0.72s", petal: "#f6cab3", center: "#f0cb7c" },
-      { x: "4%", y: "64%", size: 155, delay: "0.9s", petal: "#dca8be", center: "#f4d690" },
-      { x: "84%", y: "71%", size: 124, delay: "1.1s", petal: "#f2ada0", center: "#f6d589" },
-      { x: "15%", y: "82%", size: 118, delay: "1.28s", petal: "#f5c2ba", center: "#f2ca72" },
-      { x: "50%", y: "90%", size: 142, delay: "1.46s", petal: "#e7b0c0", center: "#f4cf80" }
+      // Top-left cluster
+      { x: "1%",  y: "1%",  size: 112, delay: "0s",    petal: "#f5b8a8", center: "#f6d07e", type: 0 },
+      { x: "8%",  y: "6%",  size: 78,  delay: "0.22s", petal: "#dba8c2", center: "#f4cc80", type: 1 },
+      // Top-right cluster
+      { x: "84%", y: "1%",  size: 130, delay: "0.18s", petal: "#f0b5c4", center: "#f3cf88", type: 0 },
+      { x: "92%", y: "10%", size: 84,  delay: "0.4s",  petal: "#f5c3a8", center: "#f5d07a", type: 1 },
+      // Left edge
+      { x: "0%",  y: "38%", size: 100, delay: "0.6s",  petal: "#e8a8bb", center: "#f4d28c", type: 1 },
+      { x: "2%",  y: "58%", size: 88,  delay: "0.8s",  petal: "#f5b4a4", center: "#f6cf7c", type: 0 },
+      // Right edge
+      { x: "90%", y: "36%", size: 96,  delay: "0.5s",  petal: "#f2c4b2", center: "#f4d488", type: 0 },
+      { x: "88%", y: "60%", size: 108, delay: "0.75s", petal: "#dcaac0", center: "#f5d890", type: 1 },
+      // Bottom cluster
+      { x: "3%",  y: "80%", size: 118, delay: "1.0s",  petal: "#f5b8c4", center: "#f4d07e", type: 0 },
+      { x: "80%", y: "82%", size: 104, delay: "1.15s", petal: "#f0b0a4", center: "#f6d488", type: 1 },
+      { x: "44%", y: "88%", size: 90,  delay: "1.3s",  petal: "#e8aec0", center: "#f5cf84", type: 0 },
     ];
 
     flowers.forEach((flower, index) => {
@@ -311,29 +319,58 @@
       flowerNode.style.top = flower.y;
       flowerNode.style.setProperty("--size", `${flower.size}px`);
       flowerNode.style.setProperty("--delay", flower.delay);
-      flowerNode.style.setProperty("--float-duration", `${12 + (index % 4) * 2.2}s`);
-      flowerNode.style.setProperty("--sway-duration", `${5.5 + (index % 3) * 1.4}s`);
-      flowerNode.style.setProperty("--petal", flower.petal);
-      flowerNode.style.setProperty("--center", flower.center);
-      flowerNode.innerHTML = flowerSvgTemplate();
+      flowerNode.style.setProperty("--float-duration", `${11 + (index % 5) * 1.8}s`);
+      flowerNode.style.setProperty("--sway-duration", `${6 + (index % 4) * 1.2}s`);
+      flowerNode.innerHTML = flowerSvgTemplate(flower.petal, flower.center, flower.type);
       flowerLayer.appendChild(flowerNode);
     });
   }
 
-  function flowerSvgTemplate() {
+  function flowerSvgTemplate(petal, center, type) {
+    if (type === 1) {
+      // Soft round flower with pointed petals (like a daisy/cosmos)
+      return `
+        <svg viewBox="0 0 100 100" role="presentation" aria-hidden="true" focusable="false">
+          <filter id="soft">
+            <feGaussianBlur stdDeviation="0.6" result="blur"/>
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+          </filter>
+          <g transform="translate(50,52)" filter="url(#soft)">
+            <path d="M0,0 C-8,-10 -8,-30 0,-38 C8,-30 8,-10 0,0Z" fill="${petal}" fill-opacity="0.82" transform="rotate(0)"/>
+            <path d="M0,0 C-8,-10 -8,-30 0,-38 C8,-30 8,-10 0,0Z" fill="${petal}" fill-opacity="0.76" transform="rotate(36)"/>
+            <path d="M0,0 C-8,-10 -8,-30 0,-38 C8,-30 8,-10 0,0Z" fill="${petal}" fill-opacity="0.84" transform="rotate(72)"/>
+            <path d="M0,0 C-8,-10 -8,-30 0,-38 C8,-30 8,-10 0,0Z" fill="${petal}" fill-opacity="0.78" transform="rotate(108)"/>
+            <path d="M0,0 C-8,-10 -8,-30 0,-38 C8,-30 8,-10 0,0Z" fill="${petal}" fill-opacity="0.82" transform="rotate(144)"/>
+            <path d="M0,0 C-8,-10 -8,-30 0,-38 C8,-30 8,-10 0,0Z" fill="${petal}" fill-opacity="0.80" transform="rotate(180)"/>
+            <path d="M0,0 C-8,-10 -8,-30 0,-38 C8,-30 8,-10 0,0Z" fill="${petal}" fill-opacity="0.74" transform="rotate(216)"/>
+            <path d="M0,0 C-8,-10 -8,-30 0,-38 C8,-30 8,-10 0,0Z" fill="${petal}" fill-opacity="0.84" transform="rotate(252)"/>
+            <path d="M0,0 C-8,-10 -8,-30 0,-38 C8,-30 8,-10 0,0Z" fill="${petal}" fill-opacity="0.80" transform="rotate(288)"/>
+            <path d="M0,0 C-8,-10 -8,-30 0,-38 C8,-30 8,-10 0,0Z" fill="${petal}" fill-opacity="0.76" transform="rotate(324)"/>
+          </g>
+          <circle cx="50" cy="52" r="11" fill="${center}" opacity="0.95"/>
+          <circle cx="50" cy="52" r="6" fill="#fff9e8" opacity="0.55"/>
+        </svg>
+      `;
+    }
+    // Rounder, fuller flower (like a peony/ranunculus)
     return `
-      <svg viewBox="0 0 80 80" role="presentation" aria-hidden="true" focusable="false">
-        <g>
-          <ellipse class="petal" cx="40" cy="14" rx="11" ry="21"></ellipse>
-          <ellipse class="petal" cx="40" cy="14" rx="11" ry="21" transform="rotate(45 40 40)"></ellipse>
-          <ellipse class="petal" cx="40" cy="14" rx="11" ry="21" transform="rotate(90 40 40)"></ellipse>
-          <ellipse class="petal" cx="40" cy="14" rx="11" ry="21" transform="rotate(135 40 40)"></ellipse>
-          <ellipse class="petal" cx="40" cy="14" rx="11" ry="21" transform="rotate(180 40 40)"></ellipse>
-          <ellipse class="petal" cx="40" cy="14" rx="11" ry="21" transform="rotate(225 40 40)"></ellipse>
-          <ellipse class="petal" cx="40" cy="14" rx="11" ry="21" transform="rotate(270 40 40)"></ellipse>
-          <ellipse class="petal" cx="40" cy="14" rx="11" ry="21" transform="rotate(315 40 40)"></ellipse>
+      <svg viewBox="0 0 100 100" role="presentation" aria-hidden="true" focusable="false">
+        <g transform="translate(50,52)">
+          <ellipse rx="10" ry="28" fill="${petal}" fill-opacity="0.70" transform="rotate(0) translate(0,-14)"/>
+          <ellipse rx="10" ry="28" fill="${petal}" fill-opacity="0.68" transform="rotate(45) translate(0,-14)"/>
+          <ellipse rx="10" ry="28" fill="${petal}" fill-opacity="0.72" transform="rotate(90) translate(0,-14)"/>
+          <ellipse rx="10" ry="28" fill="${petal}" fill-opacity="0.68" transform="rotate(135) translate(0,-14)"/>
+          <ellipse rx="10" ry="28" fill="${petal}" fill-opacity="0.70" transform="rotate(180) translate(0,-14)"/>
+          <ellipse rx="10" ry="28" fill="${petal}" fill-opacity="0.66" transform="rotate(225) translate(0,-14)"/>
+          <ellipse rx="10" ry="28" fill="${petal}" fill-opacity="0.72" transform="rotate(270) translate(0,-14)"/>
+          <ellipse rx="10" ry="28" fill="${petal}" fill-opacity="0.68" transform="rotate(315) translate(0,-14)"/>
+          <ellipse rx="7" ry="18" fill="${petal}" fill-opacity="0.88" transform="rotate(22) translate(0,-10)"/>
+          <ellipse rx="7" ry="18" fill="${petal}" fill-opacity="0.88" transform="rotate(112) translate(0,-10)"/>
+          <ellipse rx="7" ry="18" fill="${petal}" fill-opacity="0.88" transform="rotate(202) translate(0,-10)"/>
+          <ellipse rx="7" ry="18" fill="${petal}" fill-opacity="0.88" transform="rotate(292) translate(0,-10)"/>
         </g>
-        <circle class="flower-center" cx="40" cy="40" r="10"></circle>
+        <circle cx="50" cy="52" r="12" fill="${center}" opacity="0.95"/>
+        <circle cx="50" cy="52" r="6.5" fill="#fff8e0" opacity="0.5"/>
       </svg>
     `;
   }
