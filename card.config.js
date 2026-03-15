@@ -1,17 +1,9 @@
 window.cardConfig = {
-  recipientName: "For Mom",
-  headline: "Happy Mother's Day",
-  messageLines: [
-    "Thank you for filling every season of life with warmth, patience, and love.",
-    "Your strength and kindness have shaped me in more ways than words can hold.",
-    "I hope today brings you the same joy you bring to everyone around you."
-  ],
-  signature: "Love always, Thomas",
-  photos: [
-    "assets/photos/photo-1.svg",
-    "assets/photos/photo-2.svg",
-    "assets/photos/photo-3.svg"
-  ],
+  recipientName: "",
+  headline: "",
+  messageLines: ["happy mothers day from thomas hope you have a great day"],
+  signature: "",
+  photos: [],
   access: {
     enabled: true,
     code: "MOM2026",

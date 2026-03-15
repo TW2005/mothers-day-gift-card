@@ -33,7 +33,6 @@
   const showCard = () => {
     applyPalette(config.palette);
     renderTextContent(config);
-    renderPhotoCollage(config.photos);
     renderFloralLayer();
   };
 
@@ -217,13 +216,15 @@
   }
 
   function renderTextContent(cardConfig) {
+    const headerNode = document.querySelector(".card-header");
+    const footerNode = document.querySelector(".card-footer");
     const recipientNode = document.getElementById("recipient");
     const headlineNode = document.getElementById("headline");
     const messageNode = document.getElementById("message");
     const signatureNode = document.getElementById("signature");
 
-    recipientNode.textContent = cardConfig.recipientName;
-    headlineNode.textContent = cardConfig.headline;
+    setOptionalText(recipientNode, cardConfig.recipientName);
+    setOptionalText(headlineNode, cardConfig.headline);
 
     messageNode.replaceChildren(
       ...cardConfig.messageLines.map((line) => {
@@ -233,7 +234,16 @@
       })
     );
 
-    signatureNode.textContent = cardConfig.signature;
+    setOptionalText(signatureNode, cardConfig.signature);
+
+    headerNode.hidden = !cardConfig.recipientName && !cardConfig.headline;
+    footerNode.hidden = !cardConfig.signature;
+  }
+
+  function setOptionalText(node, value) {
+    const trimmedValue = typeof value === "string" ? value.trim() : "";
+    node.textContent = trimmedValue;
+    node.hidden = !trimmedValue;
   }
 
   function renderPhotoCollage(photoPaths) {
